@@ -1,11 +1,23 @@
+/**
+ * @file WebServerTH.ino
+ * @author Shantanu Mane (@RndmCodeGuy20) (shantanu.mane.200@outlook.com)
+ * @brief Takes data from ESP32 and OpenWeatherMap API and displays a weather card.
+ * @version  1.3.2
+ * @date 2022-05-27
+ *
+ * @copyright Copyright (c) 2022
+ * @license MIT License
+ *
+ */
+
 #include <WiFi.h>
 #include <WebServer.h>
 #include "DHT.h"
 
 #define DHTTYPE DHT11 // DHT 11
 
-const char *ssid = "JIOFIBER-MANE LOW";      // Enter SSID here
-const char *password = "RNDM@20RADIOWAVE20"; // Enter Password here
+const char *ssid = "************";        // Enter SSID here
+const char *password = "***************"; // Enter Password here
 
 WebServer server(80);
 
@@ -59,8 +71,8 @@ void loop()
 void handle_OnConnect()
 {
 
-  Temperature = dht.readTemperature(); // Gets the values of the temperature
-  Humidity = dht.readHumidity();       // Gets the values of the humidity
+  Temperature = dht.readTemperature(); // Gets the values of temperature
+  Humidity = dht.readHumidity();       // Gets the values of humidity
   server.send(200, "text/html", SendHTML(Temperature, Humidity));
 }
 
